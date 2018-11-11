@@ -4,13 +4,11 @@
 ## Game Guess Mean
 ## server.R
 
-## library(UsingR)
-## data(galton)
 shinyServer(
         function(input, output) {
                 output$newplot <- renderPlot({
                         rdf <- data.frame(x=1:10, y = sample(1:100,10))
-                        m <- mean(df$y)
+                        m <- mean(rdf$y)
                         mu <- as.numeric(input$mu)
                         tol <- as.numeric(input$tol)
                         plot(x = rdf$x, y=rdf$y, col = "darkgreen", pch = 12,

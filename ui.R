@@ -10,6 +10,7 @@
 ## The server attributes the user score based on tolerance selected
 ## The server generates a graphic with the numbers, mean and guess+-tolerance lines
 
+
 shinyUI(pageWithSidebar(
         headerPanel("Guess Game"),
         sidebarPanel(
