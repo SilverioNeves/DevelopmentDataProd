@@ -1,0 +1,33 @@
+---
+title: "Developing Data Produts Week 3 Assignment"
+author: "Silverio Neves"
+date: "6 de Novembro de 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+if(!require(datasets)) install.packages("datasets")
+library(datasets)
+if(!require(plotly)) install.packages("plotly")
+library(plotly)
+if(!require(tidyr)) install.packages("tidyr")
+library(tidyr)
+if(!require(dplyr)) install.packages("dplyr")
+library(dplyr)
+```
+
+## 6 de Novembro de 2018
+Graphic about impact of some fetures in Milles per Gallon
+
+```{r echo=FALSE, fig.height = 4, fig.width = 6, fig.align = "center", warning = FALSE}
+df <- mtcars
+df$am[df$am==0]<- 100 ## o turns 100
+df$am[df$am==1]<- 200 ## 1 turns 200
+df <- gather(df, feature, value, -mpg)
+df <- mutate(df, mpg = rep(mtcars$mpg, 10))
+plot_ly(df, x = ~mpg, y=~value, color = ~feature, type = "scatter", mode = "markers")
+```
+
+
+

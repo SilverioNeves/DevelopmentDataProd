@@ -1,0 +1,84 @@
+---
+title: "Course Project - Guess Mean Shiny Application"
+author: "Silverio Neves"
+date: "8 de Novembro de 2018"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(shiny)
+
+```
+
+## Shiny Application Goal
+
+
+The goal of the application is to have the maximum possible score guessing the mean using a tolerance.
+
+- The user sets the guess mean and selects the tolerance.
+- The computer generates randomly 10 numbers between 1 and 100
+- The computer calculates the mean and compares to guess and tolerance
+- To have no zero points the mean needs to be in the interval of the guess mean +/- tolerance.
+- If the tolerance select was 1, the user obtain the maximum score of 100. 60 points for tolerance 5 and 20 points for tolerance 10.
+- The computer attributes the user score based on tolerance selected 
+
+## User Interface
+
+```{r ui}
+shinyUI(pageWithSidebar(
+        headerPanel("Guess Game"),
+        sidebarPanel(
+                numericInput('mu', 'Select your Guess (1<=mean<=100)',value = 49, min = 1, max = 100, step = 1),
+                radioButtons("tol", "Select your tolerance",
+                              c("1 = 100 points" = 1,
+                                "5 = 60 points" = 5,
+                                "10 = 20 points" = 10),
+                             selected = 10),
+                hr(),
+                tags$b(textOutput("gen1")),
+                tags$i(textOutput("gen2"))
+        ),
+        mainPanel(
+                tags$b(textOutput("txt1")),
+                tags$b(textOutput("txt2")),
+                hr(),
+                plotOutput('newplot'),
+                hr(),
+                tags$b(textOutput("score"))
+                
+        )
+))
+
+```
+The user selects in the side panel the guess mean and tolerance to see results on the right with text and graphic. 
+
+## User Iterface
+
+Your Guess was mean = 49 and tolerance = 10
+```{r server}
+        rdf <- data.frame(x=1:10, y = sample(1:100,10))
+        m <- mean(rdf$y)
+        mu <- 49
+        tol <- 10
+        plot(x = rdf$x, y=rdf$y, col = "darkgreen", pch = 12,
+                     xlab = "10 numbers genereated by computer",
+                     ylab = "Numbers value 1-100")
+              abline(h = m, col = "darkblue", lty = 1)
+              abline(h = (mu+tol), col ="red", lty=3)
+              abline(h = (mu-tol), col ="red", lty=3)
+              abline(h = mu, col ="red", lty=2)
+              if (m >= (mu-tol) & m<= (mu+tol)){
+                     if (tol == 1) s <- 100 else{
+                               if(tol == 5) s <- 60 else s<- 20
+                }} else s <- 0
+
+```
+Your score is **```r s```**
+
+On the left side (side panel) appears all randomly generated numbers : ```r rdf$y```
+
+## Conclusions
+
+This simple application can demonstrate how the Shiny is very suitable to do interactive graphics to present our results in conjugation with others stuffs to help in this work.
+

@@ -1,0 +1,33 @@
+---
+title: "Developing Data Produts Week 1 Assignment"
+author: "Silverio Neves"
+date: "6 de Novembro de 2018"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+if(!require(leaflet)) install.packages("leaflet")
+library(leaflet)
+
+```
+
+## 6 de Novembro de 2018
+
+```{r echo=FALSE}
+df <- data.frame(latitude = c(40.641620,40.639795,40.638644),
+                 longitude = c(-8.656666,-8.657068,-8.655664))
+
+links <- c("<a href=´https://www.visitportugal.com/pt-pt/content/posto-de-turismo-aveiro´>Visit Aveiro</a",
+           "<a href=´https://www.visitportugal.com/pt-pt/content/posto-de-turismo-aveiro´>Visit Aveiro</a",
+           "<a href=´https://www.visitportugal.com/pt-pt/content/posto-de-turismo-aveiro´>Visit Aveiro</a")
+
+df %>%
+  leaflet() %>%
+  addTiles() %>%
+  addCircleMarkers(color = c("red", "blue", "green"), popup = links) %>%
+  addLegend(labels = c("Rossio Garden","Aloi Garden","Santo Antonio Garden Park"), colors = c("blue", "red", "green"))
+```
+
+
+
