@@ -18,9 +18,9 @@ library(leaflet)
 df <- data.frame(latitude = c(40.641620,40.639795,40.638644),
                  longitude = c(-8.656666,-8.657068,-8.655664))
 
-links <- c("<a href=´https://www.visitportugal.com/pt-pt/content/posto-de-turismo-aveiro´>Visit Aveiro</a",
-           "<a href=´https://www.visitportugal.com/pt-pt/content/posto-de-turismo-aveiro´>Visit Aveiro</a",
-           "<a href=´https://www.visitportugal.com/pt-pt/content/posto-de-turismo-aveiro´>Visit Aveiro</a")
+links <- c("<a href=https://www.visitportugal.com/pt-pt/content/posto-de-turismo-aveiro?>Visit Aveiro</a",
+           "<a href=https://www.visitportugal.com/pt-pt/content/posto-de-turismo-aveiro?>Visit Aveiro</a",
+           "<a href=https://www.visitportugal.com/pt-pt/content/posto-de-turismo-aveiro?>Visit Aveiro</a")
 
 df %>%
   leaflet() %>%
